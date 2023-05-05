@@ -1,6 +1,11 @@
 var fs = require('fs');
 var archiver = require('archiver');
 
+/**
+ * 将docx文件夹重新打包生成docx文件
+ * @param {string} outputPath 
+ * @param {string} dataPath 
+ */
 const handleArchiver = (outputPath, dataPath) => {
     var output = fs.createWriteStream(outputPath);
     var archive = archiver('zip', {
