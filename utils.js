@@ -1,5 +1,32 @@
 var fs = require('fs');
 var archiver = require('archiver');
+const unzipper = require('unzipper')
+
+const docxArr = [
+  '/docx/default.docx',
+  '/docx/a.docx',
+  '/docx/b.docx',
+  '/docx/c.docx',
+]
+/**
+ * 将docx文件解压缩为文件夹
+ * @returns Promise<boolean>
+ */
+function unzipperFn() {
+  return new Promise((resolve, reject) => {
+      let count = 0;
+      docxArr.forEach((docxpath, index) => {
+          const readStream = fs.createReadStream(__dirname + docxpath);
+          readStream.pipe(unzipper.Extract({ path: __dirname + '/file/' + index }));
+          readStream.on('end', () => {
+              count++;
+              if (count === 4) {
+                  resolve()
+              }
+          });
+      })
+  })
+}
 
 /**
  * 将docx文件夹重新打包生成docx文件
@@ -45,5 +72,6 @@ const handleArchiver = (outputPath, dataPath) => {
 
 
 module.exports = {
+  unzipperFn,
   handleArchiver
 }
