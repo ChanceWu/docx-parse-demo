@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "archiver": "^5.3.1",
+    "docx-builder": "^1.0.7",
+    "docx-merger": "^1.2.2",
     "unzipper": "^0.10.11",
     "xml2js": "^0.5.0"
   }
