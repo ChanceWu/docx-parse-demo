@@ -1,0 +1,14 @@
+diff --git a/node_modules/docx-merger/dist/merge-styles.js b/node_modules/docx-merger/dist/merge-styles.js
+index 00a6eae..d4dd07f 100644
+--- a/node_modules/docx-merger/dist/merge-styles.js
++++ b/node_modules/docx-merger/dist/merge-styles.js
+@@ -68,7 +68,8 @@ var updateStyleRel_Content = function (zip, fileIndex, styleId) {
+     var xmlString = zip.file("word/document.xml").asText();
+     var xml = new DOMParser().parseFromString(xmlString, 'text/xml');
+ 
+-    xmlString = xmlString.replace(new RegExp('w:val="' + styleId + '"', 'g'), 'w:val="' + styleId + '_' + fileIndex + '"');
++    xmlString = xmlString.replace(new RegExp('(?<!w:numId )w:val="' + styleId + '"', 'g'), 'w:val="' + styleId + '_' + fileIndex + '"');
++    xmlString = xmlString.replace(new RegExp('(?<=w:numId )w:val="' + styleId + '"', 'g'), 'w:val="' + styleId + fileIndex + '"');
+ 
+     // zip.file("word/document.xml", "");
+ 
