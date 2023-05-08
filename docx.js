@@ -62,6 +62,8 @@ async function init() {
   ]);
 
   //SAVING THE DOCX FILE
+  // TODO: 处理模板文件合并时，部分无序列表样式失效问题
+  // FIXME: 处理模板文件合并时，标题样式非原模板文件样式
 
   docx.save("nodebuffer", function (data) {
     console.log(data);
