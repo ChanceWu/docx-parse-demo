@@ -30,12 +30,26 @@ function createPage(text) {
 }
 
 async function init() {
-  const head1 = await createPage("文件一");
-  var file1 = fs.readFileSync(path.resolve(__dirname, "docx/a.docx"), "binary");
-  const head2 = await createPage("文件二");
-  var file2 = fs.readFileSync(path.resolve(__dirname, "docx/b.docx"), "binary");
-  const head3 = await createPage("文件三");
-  var file3 = fs.readFileSync(path.resolve(__dirname, "docx/c.docx"), "binary");
+  const head1 = await createPage("概述");
+  var file1 = fs.readFileSync(
+    path.resolve(__dirname, "docx/d1.docx"),
+    "binary"
+  );
+  const head2 = await createPage("技术规格要求");
+  var file2 = fs.readFileSync(
+    path.resolve(__dirname, "docx/d2.docx"),
+    "binary"
+  );
+  const head3 = await createPage("售后技术服务");
+  var file3 = fs.readFileSync(
+    path.resolve(__dirname, "docx/d9.docx"),
+    "binary"
+  );
+  const head4 = await createPage("项目执行要求");
+  var file4 = fs.readFileSync(
+    path.resolve(__dirname, "docx/d6.docx"),
+    "binary"
+  );
   var docx = new DocxMerger({ pageBreak: false }, [
     head1,
     file1,
@@ -43,6 +57,8 @@ async function init() {
     file2,
     head3,
     file3,
+    head4,
+    file4,
   ]);
 
   //SAVING THE DOCX FILE
